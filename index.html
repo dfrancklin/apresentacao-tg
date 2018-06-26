@@ -8,14 +8,14 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/vs2015.css">
 
 		<script>
-			var link = document.createElement( 'link' );
+			var link = document.createElement('link');
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName('head')[0].appendChild(link);
 		</script>
 	</head>
 
@@ -23,23 +23,23 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<img src="img/FATEC.jpg" alt="FATEC" style="margin-bottom: 80px; border: none; box-shadow: 0 0 19px rgba(255, 255, 255, 0.5);">
+					<img src="img/FATEC.jpg" alt="FATEC" style="margin-bottom: 60px; border: none; box-shadow: 0 0 19px rgba(255, 255, 255, 0.5);">
 
-					<h1 style="margin-bottom: 80px">Lamberjack's ORM</h1>
+					<h1 style="margin-bottom: 60px; color: #1b91ff;">Lamberjack's ORM</h1>
 
-					<p style="text-align: right">
+					<p style="text-align: right; margin-bottom: 60px; ">
 						Diego Francklin Martins dos Santos<br>
 						Profª. Cristiane Palomar Mercado &mdash; Orientadora
 					</p>
 
-					<p style="font-size: 60%;">
+					<small>
 						Sorocaba<br>
 						Julho &mdash; 2018
-					</p>
+					</small>
 				</section>
 
 				<section id="introduction">
-					<h1>Introdução</h1>
+					<h2>Introdução</h2>
 
 					<ul>
 						<li class="fragment fade-up">
@@ -54,10 +54,10 @@
 				</section>
 
 				<section id="objectives">
-					<h1>Objetivos</h1>
+					<h2>Objetivos</h2>
 
 					<ul>
-						<li class="fragment fade-up">Desenvolver <i>Framwork ORM</i></li>
+						<li class="fragment fade-up">Desenvolver <i>Framework ORM</i></li>
 						<li class="fragment fade-up">Linguagem <i>PHP</i></li>
 						<li class="fragment fade-up">
 							Principais Características:
@@ -73,7 +73,7 @@
 
 				<section>
 					<section id="framework">
-						<h1><i>Framework</i></h1>
+						<h2><i>Framework</i></h2>
 
 						<ul>
 							<li class="fragment fade-up">
@@ -90,7 +90,7 @@
 					</section>
 
 					<section id="benefits-of-the-framework">
-						<h1>Benefícios do <i>Framework</i></h1>
+						<h3>Benefícios do <i>Framework</i></h3>
 
 						<ul>
 							<li class="fragment fade-up">Melhora a Modularização</li>
@@ -102,7 +102,7 @@
 				</section>
 
 				<section id="design-patterns">
-					<h1><i>Design Patterns</i></h1>
+					<h2><i>Design Patterns</i></h2>
 
 					<ul>
 						<li class="fragment fade-up">Composto por: Contexto, Problema e Solução</li>
@@ -117,7 +117,7 @@
 
 				<section>
 					<section id="orm">
-						<h1><i>ORM</i></h1>
+						<h2><i>ORM</i></h2>
 
 						<ul>
 							<li class="fragment fade-up">Object-Relational Mapping</li>
@@ -132,7 +132,7 @@
 
 
 					<section id="active-record">
-						<h1><i>Active Record</i></h1>
+						<h3><i>Active Record</i></h3>
 
 						<ul>
 							<li class="fragment fade-up">Objetos do Modelo</li>
@@ -151,7 +151,7 @@
 					</section>
 
 					<section id="data-mapper">
-						<h1><i>Data Mapper</i></h1>
+						<h3><i>Data Mapper</i></h3>
 
 						<ul>
 							<li class="fragment fade-up">Camada de Objetos que Mapeiam</li>
@@ -171,16 +171,115 @@
 					</section>
 				</section>
 
-				<!-- ul>li.fragment.fade-up* -->
-				<section id="study-case">
-					<h1>Estudo de Caso</h1>
+				<section>
+					<section id="study-case">
+						<h2>Estudo de Caso</h2>
+					</section>
+
+					<section id="mapping-part-1">
+						<h3>Mapeamento</h3>
+
+						<ul>
+							<li class="fragment fade-up"><i>Annotations</i></li>
+							<li class="fragment fade-up">Bloco de Comentário, o <i>PHPDoc</i></li>
+							<li class="fragment fade-up">Tabelas Mapeadas por Classes</li>
+							<li class="fragment fade-up">Colunas mapeadas por Propriedades</li>
+						</ul>
+					</section>
+
+					<section id="mapping-example">
+						<pre><code language-php style="max-height: 80% !important; font-size: 80%;">&lt;?php
+namespace App\Models;
+/**
+ * @ORM/Entity
+ * @ORM/Table(name=pessoa)
+ */
+class Pessoa {
+    /**
+     * @ORM/Id
+     * @ORM/Generated
+     * @ORM/Column(name=pessoa_id, type=int)
+     */
+    public $id;
+    /**
+     * @ORM/Column(name=nome, type=string, length=50)
+     */
+    public $nome;
+    /**
+     * @ORM/Column(name=data_nasc, type=date)
+     */
+    public $dataNasc;
+}
+</code></pre>
+					</section>
+
+					<section id="mapping-part-2">
+						<h3>Mapeamento</h3>
+
+						<ul>
+							<li class="fragment fade-up">Recuperar Informações</li>
+							<li class="fragment fade-up">
+								Família de Classes <i>Reflection</i>
+
+								<ul class="fragment fade-up">
+									<li><i>ReflectionClass</i></li>
+									<li><i>ReflectionProperty</i></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section id="mapping-example-2">
+						<pre><code language-php style="max-height: 80% !important; font-size: 80%;">&lt;?php
+    $reflection = new ReflectionClass('App\Models\Pessoa');
+    $doc = $reflection->getDocComment();
+    $properties = $reflection->getProperties();
+
+    foreach($properties as $property) {
+        $propertyDoc = $property->getDocComment();
+    }
+?&gt;
+</code></pre>
+					</section>
+
+					<section id="mapping-part-3">
+						<h3>Mapeamento</h3>
+
+						<ul>
+							<li class="fragment fade-up">Analisar <i>Annotations</i></li>
+							<li class="fragment fade-up">
+								Expressões Regulares
+								<ul class="fragment fade-up">
+									<li>preg_match</li>
+									<li>preg_match_all</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section id="mapping-example-3">
+						<pre><code language-php style="max-height: 80% !important; font-size: 80%;">&lt;?php
+    $reflection = new ReflectionClass('App\Models\Pessoa');
+    $doc = $reflection->getDocComment();
+    $findAnnotatoins = '/@ORM\/[@A-Za-z0-9=,_\/\s\(\)\{\}]+/i';
+    $findTable = '/Table\([@A-Za-z0-9=,_\/\s\(\)]+\)/i';
+    $findName = '/name[\s]?=[\s]?(\w+)/i';
+
+    preg_match_all($findAnnotatoins, $doc, $annotations);
+    $annotations = join($annotations[0], '');
+    preg_match($findTable, $annotations, $table);
+    preg_match($findName, $table[0], $name);
+?&gt;
+</code></pre>
+					</section>
 				</section>
 
+				<!-- ul>li.fragment.fade-up* -->
 				<section id="code">
-					<h1>Código Fonte</h1>
+					<h2>Código Fonte</h2>
 
 					<p>
-						O código fonte do framework Lamberjack’s ORM pode ser encontrado no seguinte repositório do GitHub.<br>
+						O código fonte do framework Lamberjack's ORM pode ser encontrado no seguinte repositório do GitHub.<br>
 						<a href="https://github.com/dfrancklin/orm/">https://github.com/dfrancklin/orm/</a>
 					</p>
 
@@ -188,11 +287,11 @@
 				</section>
 
 				<section id="final-considerations">
-					<h1>Considerações Finais</h1>
+					<h2>Considerações Finais</h2>
 				</section>
 
 				<section id="thanks">
-					<h1>Obrigado!</h1>
+					<h2>Obrigado!</h2>
 				</section>
 			</div>
 		</div>
@@ -210,12 +309,15 @@
 				history: true,
 				mouseWheel: true,
 				overview:true,
+				pdfMaxPagesPerSlide: 4,
+				margin: 0.1,
 				// width: '90%',
 				// height: '200%',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
