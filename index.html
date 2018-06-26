@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lamberjack's ORM</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="img/FATEC.jpg" alt="FATEC" style="margin-bottom: 80px; border: none; box-shadow: 0 0 19px rgba(255, 255, 255, 0.5);">
+
+					<h1 style="margin-bottom: 80px">Lamberjack's ORM</h1>
+
+					<p style="text-align: right">
+						Diego Francklin Martins dos Santos<br>
+						Profª. Cristiane Palomar Mercado &mdash; Orientadora
+					</p>
+
+					<p style="font-size: 60%;">
+						Sorocaba<br>
+						Julho &mdash; 2018
+					</p>
+				</section>
+
+				<section id="introduction">
+					<h1>Introdução</h1>
+
+					<ul>
+						<li class="fragment fade-up">
+							Situação Atual:
+							<ul>
+								<li class="fragment fade-up">Problemas com Documentação</li>
+								<li class="fragment fade-up">Problemas para Mapear Relacionamentos</li>
+								<li class="fragment fade-up">Não Cria o Escopo de Tabelas à Partir do Classes do Modelo</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section id="objectives">
+					<h1>Objetivos</h1>
+
+					<ul>
+						<li class="fragment fade-up">Desenvolver <i>Framwork ORM</i></li>
+						<li class="fragment fade-up">Linguagem <i>PHP</i></li>
+						<li class="fragment fade-up">
+							Principais Características:
+							<ul>
+								<li class="fragment fade-up">Mapear Entidades Utilizando <i>Annotations</i></li>
+								<li class="fragment fade-up">Mapear Relacionamentos</li>
+								<li class="fragment fade-up">Multiplas Conexões</li>
+								<li class="fragment fade-up">Criar Escopo de Tabelas à Partir do Modelo</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<section id="framework">
+						<h1><i>Framework</i></h1>
+
+						<ul>
+							<li class="fragment fade-up">
+								Reutilização de Soluções Consistentes
+
+								<ul>
+									<li>Se Tornam Conhecidas, Aceitas, Generalizadas e Padronizadas</li>
+								</ul>
+							</li>
+							<li class="fragment fade-up">Engloba uma Funcionalidade Especifica e Comum</li>
+							<li class="fragment fade-up">Define a Organização do <i>Software</i></li>
+							<li class="fragment fade-up">Fácil Customização</li>
+						</ul>
+					</section>
+
+					<section id="benefits-of-the-framework">
+						<h1>Benefícios do <i>Framework</i></h1>
+
+						<ul>
+							<li class="fragment fade-up">Melhora a Modularização</li>
+							<li class="fragment fade-up">Aumenta a Reutilização	</li>
+							<li class="fragment fade-up">Extensibilidade</li>
+							<li class="fragment fade-up">Inversão de Controle</li>
+						</ul>
+					</section>
+				</section>
+
+				<section id="design-patterns">
+					<h1><i>Design Patterns</i></h1>
+
+					<ul>
+						<li class="fragment fade-up">Composto por: Contexto, Problema e Solução</li>
+						<li class="fragment fade-up">
+							<i>Design Patterns: Elements of Reusable Object-Oriented Software</i>
+							<div style="text-align: right"><small>&mdash; Erich GAMMA; Richard HELM; Ralph JOHNSON; John VLISSIDES</small></div>
+						</li>
+						<li class="fragment fade-up">Quando Não Usar</li>
+						<li class="fragment fade-up">Diferença Entre <i>Design Pattern</i> e <i>Framework</i></li>
+					</ul>
+				</section>
+
+				<section>
+					<section id="orm">
+						<h1><i>ORM</i></h1>
+
+						<ul>
+							<li class="fragment fade-up">Object-Relational Mapping</li>
+							<li class="fragment fade-up">Camada de Acesso a Dados</li>
+							<li class="fragment fade-up">Tomar Conta de Boa Parte do Trabalho Pesado</li>
+							<li class="fragment fade-up">Linguagem de Programação Orientada a Objetos</li>
+							<li class="fragment fade-up">Bancos de Dados Trabalham com a Estrutura de Tabelas e Registros</li>
+							<li class="fragment fade-up">ORM é a Camada que Transforma os Dados</li>
+							<li class="fragment fade-up">Os Tipos de ORM Mais Comuns</li>
+						</ul>
+					</section>
+
+
+					<section id="active-record">
+						<h1><i>Active Record</i></h1>
+
+						<ul>
+							<li class="fragment fade-up">Objetos do Modelo</li>
+							<li class="fragment fade-up">Desenvolvimento Mais Rápido e Leve</li>
+							<li class="fragment fade-up">Grande Dependência Entre o Modelo e o Banco de Dados</li>
+							<li class="fragment fade-up">
+								Manutenção mais complicada:
+
+								<ul>
+									<li class="fragment fade-up">Mudanças em uma das partes</li>
+									<li class="fragment fade-up">Modelos Complexos, Mapeamento Complexo</li>
+									<li class="fragment fade-up">Aumenta Duplicação de Código</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section id="data-mapper">
+						<h1><i>Data Mapper</i></h1>
+
+						<ul>
+							<li class="fragment fade-up">Camada de Objetos que Mapeiam</li>
+							<li class="fragment fade-up">Código Mais Limpo e Simples de Compreender</li>
+							<li class="fragment fade-up">Mapear uma Tabela do Banco de Dados</li>
+							<li class="fragment fade-up">Os Objetos do Modelo Geralmente Estão Muito Interconectados</li>
+							<li class="fragment fade-up">Pode Trazer Mais Dados do que o Desejado</li>
+							<li class="fragment fade-up">
+								Lazy Load:
+
+								<ul>
+									<li class="fragment fade-up">Objeto Não Contém Todos os Dados</li>
+									<li class="fragment fade-up">Sabe Como Obter os Dados</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- ul>li.fragment.fade-up* -->
+				<section id="study-case">
+					<h1>Estudo de Caso</h1>
+				</section>
+
+				<section id="code">
+					<h1>Código Fonte</h1>
+
+					<p>
+						O código fonte do framework Lamberjack’s ORM pode ser encontrado no seguinte repositório do GitHub.<br>
+						<a href="https://github.com/dfrancklin/orm/">https://github.com/dfrancklin/orm/</a>
+					</p>
+
+					<img src="img/qr-code.jpg" alt="QR Code" style="border: none; max-width: 260px;">
+				</section>
+
+				<section id="final-considerations">
+					<h1>Considerações Finais</h1>
+				</section>
+
+				<section id="thanks">
+					<h1>Obrigado!</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.configure({
+				showSlideNumber: 'speaker',
+				slideNumber: 'c/t'
+			});
+
+			Reveal.initialize({
+				transition: 'convex',
+				history: true,
+				mouseWheel: true,
+				overview:true,
+				// width: '90%',
+				// height: '200%',
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
