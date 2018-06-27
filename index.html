@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 		<link rel="stylesheet" href="lib/css/vs2015.css">
+		<link rel="stylesheet" href="css/style.css">
 
 		<script>
 			var link = document.createElement('link');
@@ -23,11 +24,11 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<img src="img/FATEC.jpg" alt="FATEC" style="margin-bottom: 60px; border: none; box-shadow: 0 0 19px rgba(255, 255, 255, 0.5);">
+					<img src="img/FATEC.jpg" alt="FATEC" class="mb-60">
 
-					<h1 style="margin-bottom: 60px; color: #1b91ff;">Lamberjack's ORM</h1>
+					<h1 class="mb-60 blue">Lamberjack's ORM</h1>
 
-					<p style="text-align: right; margin-bottom: 60px; ">
+					<p class="mb-60 text-right">
 						Diego Francklin Martins dos Santos<br>
 						Profª. Cristiane Palomar Mercado &mdash; Orientadora
 					</p>
@@ -108,7 +109,7 @@
 						<li class="fragment fade-up">Composto por: Contexto, Problema e Solução</li>
 						<li class="fragment fade-up">
 							<i>Design Patterns: Elements of Reusable Object-Oriented Software</i>
-							<div style="text-align: right"><small>&mdash; Erich GAMMA; Richard HELM; Ralph JOHNSON; John VLISSIDES</small></div>
+							<div class="text-right"><small>&mdash; Erich GAMMA; Richard HELM; Ralph JOHNSON; John VLISSIDES</small></div>
 						</li>
 						<li class="fragment fade-up">Quando Não Usar</li>
 						<li class="fragment fade-up">Diferença Entre <i>Design Pattern</i> e <i>Framework</i></li>
@@ -129,7 +130,6 @@
 							<li class="fragment fade-up">Os Tipos de ORM Mais Comuns</li>
 						</ul>
 					</section>
-
 
 					<section id="active-record">
 						<h3><i>Active Record</i></h3>
@@ -171,11 +171,11 @@
 					</section>
 				</section>
 
-				<section>
-					<section id="study-case">
-						<h2>Estudo de Caso</h2>
-					</section>
+				<section id="study-case">
+					<h2>Estudo de Caso</h2>
+				</section>
 
+				<section>
 					<section id="mapping-part-1">
 						<h3>Mapeamento</h3>
 
@@ -188,7 +188,7 @@
 					</section>
 
 					<section id="mapping-example">
-						<pre><code language-php style="max-height: 80% !important; font-size: 80%;">&lt;?php
+						<pre><code language-php>&lt;?php
 namespace App\Models;
 /**
  * @ORM/Entity
@@ -230,7 +230,7 @@ class Pessoa {
 					</section>
 
 					<section id="mapping-example-2">
-						<pre><code language-php style="max-height: 80% !important; font-size: 80%;">&lt;?php
+						<pre><code language-php>&lt;?php
     $reflection = new ReflectionClass('App\Models\Pessoa');
     $doc = $reflection->getDocComment();
     $properties = $reflection->getProperties();
@@ -258,7 +258,7 @@ class Pessoa {
 					</section>
 
 					<section id="mapping-example-3">
-						<pre><code language-php style="max-height: 80% !important; font-size: 80%;">&lt;?php
+						<pre><code language-php>&lt;?php
     $reflection = new ReflectionClass('App\Models\Pessoa');
     $doc = $reflection->getDocComment();
     $findAnnotatoins = '/@ORM\/[@A-Za-z0-9=,_\/\s\(\)\{\}]+/i';
@@ -274,7 +274,169 @@ class Pessoa {
 					</section>
 				</section>
 
-				<!-- ul>li.fragment.fade-up* -->
+				<section>
+					<section id="connections-part-1">
+						<h3>Conexões</h3>
+
+						<ul>
+							<li class="fragment fade-up">Realizar Comunicação com o Banco de Dados</li>
+							<li class="fragment fade-up">
+								Arquivo Com Extensão ".php"
+
+								<ul>
+									<li class="fragment fade-up">
+										connection.config.php
+
+										<ul>
+											<li class="fragment fade-up">/home/user/app/orm/</li>
+											<li class="fragment fade-up">/home/user/app/orm/connection.config.php</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="fragment fade-up">
+								<i>Array</i> de Conexões
+
+								<ul>
+									<li class="fragment fade-up">Chave: Nome da Conexão</li>
+									<li class="fragment fade-up">Valor: Informações da Conexão</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section id="connections-example-1">
+						<pre><code language-php>&lt;?php
+    return [
+        'exemplo-mysql' => [
+            'db' => 'mysql',
+            'version' => '5.7.11',
+            'host' => 'localhost',
+            'schema' => 'app',
+            'user' => 'root'
+            'pass' => 'root'
+        ],
+        'exemplo-sqlite' => [
+            'db' => 'sqlite',
+            'version' => '3',
+            'file' => '../data/app-storage.sq3',
+        ],
+    ];
+?&gt;
+</code></pre>
+					</section>
+
+					<section id="connections-part-2">
+						<h3>Conexões</h3>
+
+						<ul>
+							<li class="fragment fade-up" data-fragment-index="1">Selecionar as Conexões</li>
+							<li class="fragment fade-up" data-fragment-index="1" style="list-style: none;">
+								<pre style="width: 110%; left: -30px;"><code language-php>&lt;?php
+    $orm = ORM\Orm::getInstance();
+    $orm->setConnection('exemplo-mysql');
+?&gt;
+</code></pre>
+							</li>
+							<li class="fragment fade-up"><i>Singleton</i></li>
+						</ul>
+					</section>
+				</section>
+
+				<section id="drivers">
+					<h3><i>Drivers</i></h3>
+
+					<ul>
+						<li class="fragment fade-up">Características Diferentes</li>
+						<li class="fragment fade-up">Um <i>Driver</i> para Cada Banco de Dados e Suas Versões</li>
+						<li class="fragment fade-up">Indentificando o <i>Driver</i>: 'db' e 'version'</li>
+						<li class="fragment fade-up">
+							Responsabilidades:
+
+							<ul>
+								<li class="fragment fade-up">Validar as Informações da Conexão</li>
+								<li class="fragment fade-up">Criar a Conexão</li>
+								<li class="fragment fade-up">Tipos de Dados</li>
+								<li class="fragment fade-up">Formato para Data e Hora</li>
+								<li class="fragment fade-up">Valores Auto Gerados</li>
+								<li class="fragment fade-up">Paginação</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<section id="table-creation-part-1">
+						<h1>Criação de Tabelas</h1>
+
+						<ul>
+							<li class="fragment fade-up">Classes do Modelo</li>
+							<li class="fragment fade-up"><i>Driver</i></li>
+							<li class="fragment fade-up">Caminho para as Classes do Modelos</li>
+							<li class="fragment fade-up"><i>Namespace</i></li>
+						</ul>
+					</section>
+
+					<section id="table-creation-example-1">
+						<pre><code language-php>&lt;?php
+    $orm = ORM\Orm::getInstance();
+    $orm->setConnection('exemplo-mysql', [
+        'namespace' => 'App',
+        'modelsFolder' => '/home/user/app/models',
+        'create' => true
+    ]);
+?&gt;</code></pre>
+					</section>
+
+					<section id="table-creation-part-2">
+						<h1>Criação de Tabelas</h1>
+
+						<ul>
+							<li class="fragment fade-up" data-fragment-index="1">Apagar as tabelas antes de criá-las</li>
+						</ul>
+
+						<pre class="fragment fade-up" data-fragment-index="1"><code language-php data-noescape>&lt;?php
+    $orm = ORM\Orm::getInstance();
+    $orm->setConnection('exemplo-mysql', [
+        'namespace' => 'App',
+        'modelsFolder' => '/home/user/app/models',
+        'create' => true,
+        <mark>'drop' => true</mark>
+    ]);
+?&gt;</code></pre>
+					</section>
+
+					<section id="table-creation-part-3">
+						<h1>Criação de Tabelas</h1>
+
+						<ul>
+							<li class="fragment fade-up">
+								Executar Ações:
+
+								<ul>
+									<li class="fragment fade-up">Antes de Apagar as Tabelas</li>
+									<li class="fragment fade-up">Após Criar as Tabelas</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section id="table-creation-example-3">
+						<pre><code language-php>&lt;?php
+    $dbHelper = new App\Helpers\InitDatabase();
+    $orm = ORM\Orm::getInstance();
+    $orm->setConnection('exemplo-mysql', [
+        'namespace' => 'App',
+        'modelsFolder' => '/home/user/app/models',
+        'drop' => true,
+        'create' => true,
+        'beforeDrop' => [ $dbHelper, 'beforeDrop' ],
+        'beforeCreate' => [ $dbHelper, 'afterCreate' ]
+    ]);
+?&gt;</code></pre>
+					</section>
+				</section>
+
 				<section id="code">
 					<h2>Código Fonte</h2>
 
@@ -283,11 +445,57 @@ class Pessoa {
 						<a href="https://github.com/dfrancklin/orm/">https://github.com/dfrancklin/orm/</a>
 					</p>
 
-					<img src="img/qr-code.jpg" alt="QR Code" style="border: none; max-width: 260px;">
+					<img src="img/qr-code.jpg" alt="QR Code" style="max-width: 260px;">
 				</section>
 
-				<section id="final-considerations">
-					<h2>Considerações Finais</h2>
+				<section>
+					<section id="final-considerations-part-1">
+						<h2>Considerações Finais</h2>
+
+						<ul>
+							<li class="fragment fade-up">Novos Projetos</li>
+							<li class="fragment fade-up">Processos Mais Caros nos Dias de Hoje</li>
+							<li class="fragment fade-up">Escolha de um Banco de Dados</li>
+							<li class="fragment fade-up">
+								Existem Opções de Framework ORM
+
+								<ul>
+									<li class="fragment fade-up">
+										Possuem Problemas
+
+										<ul>
+											<li class="fragment fade-up">Documentação</li>
+											<li class="fragment fade-up">
+												Não Atendem as Necessidades do Sistema
+
+												<ul>
+													<li class="fragment fade-up">Mapeamentos N para N</li>
+													<li class="fragment fade-up">Não Suportam Criação de Tabelas</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section id="final-considerations-part-2">
+						<h2>Considerações Finais</h2>
+
+						<ul>
+							<li class="fragment fade-up">
+								Objetivo Deste Trabalho
+
+								<ul>
+									<li class="fragment fade-up">Desenvolvimento de um Framework ORM</li>
+									<li class="fragment fade-up">Mapear Modelos de Dados Complexos</li>
+									<li class="fragment fade-up">Suporte a Todos os Tipos de Relacionamentos</li>
+									<li class="fragment fade-up">Criar as Tabelas Seguindo as Classes do Modelo</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
 				</section>
 
 				<section id="thanks">
@@ -311,8 +519,6 @@ class Pessoa {
 				overview:true,
 				pdfMaxPagesPerSlide: 4,
 				margin: 0.1,
-				// width: '90%',
-				// height: '200%',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
