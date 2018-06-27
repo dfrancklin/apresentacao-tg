@@ -1,0 +1,25 @@
+mark span {
+	color: black !important
+}
+
+pre > code {
+	max-height: 80% !important;
+	font-size: 80%;
+}
+
+img {
+	border: none !important;
+	box-shadow: 0 0 19px rgba(255, 255, 255, 0.5) !important;
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+.blue {
+	color: #1b91ff !important;
+}
+
+.mb-60 {
+	margin-bottom: 60px !important;
+}
