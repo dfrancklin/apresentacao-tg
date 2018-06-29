@@ -48,10 +48,19 @@
 							<ul>
 								<li class="fragment fade-up">Problemas com Documentação</li>
 								<li class="fragment fade-up">Problemas para Mapear Relacionamentos</li>
-								<li class="fragment fade-up">Não Cria o Escopo de Tabelas à Partir do Classes do Modelo</li>
+								<li class="fragment fade-up">Não Criar o Escopo de Tabelas à Partir do Classes do Modelo</li>
 							</ul>
 						</li>
 					</ul>
+
+					<aside class="notes">
+						<small>
+							<p>Atualmente existem várias opções de frameworks ORM em PHP no mercado, porém, muitas delas, deixam a desejar...</p>
+							<p>Documentação: são insuficientes ou não são claras o bastante.</p>
+							<p>Relacionamentos: várias não oferecem suporte a Relacionamentos N para N</p>
+							<p>Criar Tabelas: por mais trivial que possa parecer essa funcionalidade, é uma opção que ajuda e muito.</p>
+						</small>
+					</aside>
 				</section>
 
 				<section id="objectives">
@@ -77,6 +86,7 @@
 						<h2><i>Framework</i></h2>
 
 						<ul>
+							<li class="fragment fade-up">Engloba uma Funcionalidade Especifica e Comum</li>
 							<li class="fragment fade-up">
 								Reutilização de Soluções Consistentes
 
@@ -84,12 +94,20 @@
 									<li>Se Tornam Conhecidas, Aceitas, Generalizadas e Padronizadas</li>
 								</ul>
 							</li>
-							<li class="fragment fade-up">Engloba uma Funcionalidade Especifica e Comum</li>
 							<li class="fragment fade-up">Define a Organização do <i>Software</i></li>
 							<li class="fragment fade-up">Fácil Customização</li>
 						</ul>
+
+						<aside class="notes">
+							<small>
+								<p>O framework é uma técnica voltada para o reaproveitamento de soluções.</p>
+								<p>O uso frequente dessas soluções faz com que fiquem conhecidas e se tornem aceitas, generalizadas e padronizadas.</p>
+								<p>Ele define a organização de um software, os tipos de objetos e as interações entre esses objetos. Ele pode ser considerado o esqueleto no qual o sistema se sustenta.</p>
+							</small>
+						</aside>
 					</section>
 
+					<!--
 					<section id="benefits-of-the-framework">
 						<h3>Benefícios do <i>Framework</i></h3>
 
@@ -99,7 +117,19 @@
 							<li class="fragment fade-up">Extensibilidade</li>
 							<li class="fragment fade-up">Inversão de Controle</li>
 						</ul>
+
+						<aside class="notes">
+							<small>
+								<ul>
+									<li>Melhora a modularização - encapsulamento dos detalhes de implementação</li>
+									<li>Aumenta a reutilização - definição de componentes genéricos</li>
+									<li>Extensibilidade - permite que aplicações estendam interfaces estáveis</li>
+									<li>Inversão de controle - código do desenvolvedor é chamado pelo código do framework</li>
+								</ul>
+							</small>
+						</aside>
 					</section>
+					-->
 				</section>
 
 				<section id="design-patterns">
@@ -114,6 +144,14 @@
 						<li class="fragment fade-up">Quando Não Usar</li>
 						<li class="fragment fade-up">Diferença Entre <i>Design Pattern</i> e <i>Framework</i></li>
 					</ul>
+
+					<aside class="notes">
+						<small>
+							<p>Um design pattern descreve uma solução (que já tenha sido utilizada diversas vezes) para um problema em um contexto (diversos).</p>
+							<p>Design pattern é uma solução para um problema, portanto, utilizá-lo onde não há um problema apenas complica mais as onde não há necessidade.</p>
+							<p>Um framework utiliza muitos padrões, ou seja, padrões são menores do que frameworks, ou seja, as partes constituintes de um framework.</p>
+						</small>
+					</aside>
 				</section>
 
 				<section>
@@ -142,9 +180,9 @@
 								Manutenção mais complicada:
 
 								<ul>
-									<li class="fragment fade-up">Mudanças em uma das partes</li>
+									<!-- <li class="fragment fade-up">Mudanças em uma das partes</li> -->
 									<li class="fragment fade-up">Modelos Complexos, Mapeamento Complexo</li>
-									<li class="fragment fade-up">Aumenta Duplicação de Código</li>
+									<!-- <li class="fragment fade-up">Aumenta Duplicação de Código</li> -->
 								</ul>
 							</li>
 						</ul>
@@ -154,10 +192,10 @@
 						<h3><i>Data Mapper</i></h3>
 
 						<ul>
-							<li class="fragment fade-up">Camada de Objetos que Mapeiam</li>
+							<li class="fragment fade-up">Camada de Mapeamento</li>
 							<li class="fragment fade-up">Código Mais Limpo e Simples de Compreender</li>
 							<li class="fragment fade-up">Mapear uma Tabela do Banco de Dados</li>
-							<li class="fragment fade-up">Os Objetos do Modelo Geralmente Estão Muito Interconectados</li>
+							<!-- <li class="fragment fade-up">Os Objetos do Modelo Geralmente Estão Muito Interconectados</li> -->
 							<li class="fragment fade-up">Pode Trazer Mais Dados do que o Desejado</li>
 							<li class="fragment fade-up">
 								Lazy Load:
@@ -227,6 +265,10 @@ class Pessoa {
 								</ul>
 							</li>
 						</ul>
+
+						<aside class="notes">
+							Reflection permite que seja realizado uma engenharia reversa nas classes, possibilitando entre outras coisas, recuperar informções sobre uma classe, no caso, o bloco de comentário.
+						</aside>
 					</section>
 
 					<section id="mapping-example-2">
@@ -335,10 +377,11 @@ class Pessoa {
 								<pre style="width: 110%; left: -30px;"><code language-php>&lt;?php
     $orm = ORM\Orm::getInstance();
     $orm->setConnection('exemplo-mysql');
+    $orm->addConnection('exemplo-sqlite');
 ?&gt;
 </code></pre>
 							</li>
-							<li class="fragment fade-up"><i>Singleton</i></li>
+							<!-- <li class="fragment fade-up"><i>Singleton</i></li> -->
 						</ul>
 					</section>
 				</section>
@@ -375,13 +418,17 @@ class Pessoa {
 							<li class="fragment fade-up">Caminho para as Classes do Modelos</li>
 							<li class="fragment fade-up"><i>Namespace</i></li>
 						</ul>
+
+						<aside class="notes">
+							<p>O namespace é uma forma de encapsular itens relacionados. Namespace no PHP fornece uma maneira de agrupar classes, interfaces, funções e constantes relacionadas.</p>
+						</aside>
 					</section>
 
 					<section id="table-creation-example-1">
 						<pre><code language-php>&lt;?php
     $orm = ORM\Orm::getInstance();
     $orm->setConnection('exemplo-mysql', [
-        'namespace' => 'App',
+        'namespace' => 'App\Models',
         'modelsFolder' => '/home/user/app/models',
         'create' => true
     ]);
@@ -431,7 +478,7 @@ class Pessoa {
         'drop' => true,
         'create' => true,
         'beforeDrop' => [ $dbHelper, 'beforeDrop' ],
-        'beforeCreate' => [ $dbHelper, 'afterCreate' ]
+        'afterCreate' => [ $dbHelper, 'afterCreate' ]
     ]);
 ?&gt;</code></pre>
 					</section>
@@ -446,6 +493,10 @@ class Pessoa {
 					</p>
 
 					<img src="img/qr-code.jpg" alt="QR Code" style="max-width: 260px;">
+				</section>
+
+				<section id="demo">
+					<h2>Demonstração</h2>
 				</section>
 
 				<section>
